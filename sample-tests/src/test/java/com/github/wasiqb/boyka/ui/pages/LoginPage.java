@@ -9,9 +9,9 @@ import org.openqa.selenium.By;
  * Home page objects
  */
 @Getter
-public class MasterPage {
-    private static final MasterPage Instance = new MasterPage();
-    public static MasterPage masterPage() { return Instance; }
+public class LoginPage {
+    private static final LoginPage Instance = new LoginPage();
+    public static LoginPage loginPage() { return Instance; }
 
     private final Locator login = Locator.buildLocator()
             .web (By.xpath("//div[@class='hidden-xs hidden-sm']//a[@id='CC-loginHeader-login']"))
@@ -28,6 +28,11 @@ public class MasterPage {
     private final Locator submit = Locator.buildLocator()
             .web (By.xpath("//button[contains(@id, 'LoginSubmit') and contains(@type, 'button')]"))
             .name ("Submit")
+            .build();
+
+    private final Locator welcome = Locator.buildLocator()
+            .web (By.xpath("//span[@class='cc-header-firstName']"))
+            .name ("Welcome FirstName")
             .build();
 }
 

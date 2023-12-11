@@ -57,4 +57,11 @@ public class TestDataBuilder {
                 .numberBetween (9000000000L, 9999999999L)))
             .build ();
     }
+
+    public static LoginData getLoginUserData() {
+        return LoginData.builder()
+                .username(FAKER.name()
+                        .username())
+                .build();
+    }
 }
