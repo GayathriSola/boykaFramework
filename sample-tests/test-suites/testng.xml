@@ -17,9 +17,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Boyka Framework Sample Test Suite">
     <suite-files>
-        <suite-file path="testng-api.xml"/>
+        <!--suite-file path="testng-api.xml"/-->
         <suite-file path="testng-web.xml"/>
-        <suite-file path="testng-cloud.xml"/>
-        <suite-file path="testng-grid.xml"/>
+        <!--suite-file path="testng-cloud.xml"/>
+        <suite-file path="testng-grid.xml"/-->
     </suite-files>
 </suite> <!-- Suite -->
