@@ -24,14 +24,13 @@ import static com.github.wasiqb.boyka.ui.actions.CheckoutPageActions.checkoutPag
 import static com.github.wasiqb.boyka.ui.actions.ConfirmOrderPageActions.confirmOrderPageActions;
 import static com.github.wasiqb.boyka.ui.actions.HomePageActions.homePageActions;
 import static com.github.wasiqb.boyka.ui.actions.OrderSuccessPageActions.orderSuccessPageActions;
+import static com.github.wasiqb.boyka.ui.actions.LoginPageActions.loginPageActions;
 
 import com.github.wasiqb.boyka.enums.PlatformType;
 import com.github.wasiqb.boyka.ui.data.BillingData;
+import com.github.wasiqb.boyka.ui.data.LoginData;
 import com.github.wasiqb.boyka.ui.data.TestDataBuilder;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 /**
  * End to End tests for LambdaTest Ecommerce Playground website.
@@ -40,15 +39,17 @@ import org.testng.annotations.Test;
  * @since 8/4/2022
  **/
 public class EcommerceEndToEndTests {
-    private BillingData billingData;
-    private String      unitPriceOfCameraLens;
 
+    @AfterMethod(alwaysRun = true)
+    public void afterMethod () {
+        onWindow ().takeScreenshot ();
+    }
     @BeforeClass (description = "Setup test class")
     @Parameters ({ "driverKey" })
     public void setupTestClass (final String driverKey) {
-        final String url = "https://ecommerce-playground.lambdatest.io/";
+        //final String url = "https://ecommerce-playground.lambdatest.io/";
+        final String url = "https://a1553334c1tst-store.occa.ocs.oraclecloud.com/home";
         createSession ("User 1", PlatformType.WEB, driverKey);
-        this.billingData = TestDataBuilder.getBillingData ();
         navigate ().to (url);
     }
 
@@ -57,48 +58,8 @@ public class EcommerceEndToEndTests {
         clearSession ();
     }
 
-    @Test (dependsOnMethods = "testRegisterUser")
-    public void testAddProductToCart () {
-        try {
-            homePageActions ().shopByCategory ("Components")
-                .addPalmTreoCameraLensToCart ()
-                .verifySuccessMessage ()
-                .checkoutProduct ();
-        } finally {
-            onWindow ().takeScreenshot ();
-        }
-    }
-
-    @Test (dependsOnMethods = "testAddProductToCart")
-    public void testCheckoutProduct () {
-        this.unitPriceOfCameraLens = checkoutPageActions ().textOfUnitPriceOfCameraLens ();
-        System.out.println ("Unit price of Camera Lens is: " + this.unitPriceOfCameraLens);
-        checkoutPageActions ().setBillingAddress (this.billingData)
-            .checkoutProduct ();
-    }
-
-    @Test (dependsOnMethods = "testCheckoutProduct")
-    public void testConfirmOrder () {
-        confirmOrderPageActions ().verifyPageHeader ()
-            .verifyProductName ()
-            .verifyUnitPrice (this.unitPriceOfCameraLens)
-            .verifyShippingAddress (this.billingData)
-            .confirmOrder ();
-    }
-
-    @Test (dependsOnMethods = "testConfirmOrder")
-    public void testOrderSuccess () {
-        orderSuccessPageActions ().verifySuccessMessage ()
-            .continueToHomePage ();
-    }
-
     @Test (description = "Test login functionality")
-    public void testRegisterUser () {
-        homePageActions ().openUserRegistrationPage ()
-            .verifyPageHeader ()
-            .registerUser ()
-            .verifySuccessfulRegistration ()
-            .continueToMyAccount ()
-            .verifyPageHeader ();
+    public void testUserLogin () {
+        loginPageActions().login();
     }
 }

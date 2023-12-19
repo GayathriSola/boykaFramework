@@ -64,6 +64,11 @@
             <artifactId>javafaker</artifactId>
             <version>${java.faker.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.wasiqb.boyka</groupId>
+            <artifactId>boyka-framework</artifactId>
+            <version>0.20.0</version>
+        </dependency>
     </dependencies>
 
     <build>
