@@ -26,13 +26,13 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.version>3.11.0</maven.compiler.version>
-        <surefire-version>3.2.2</surefire-version>
+        <maven.compiler.version>3.12.1</maven.compiler.version>
+        <surefire-version>3.2.5</surefire-version>
         <java.release.version>17</java.release.version>
         <maven.source.encoding>UTF-8</maven.source.encoding>
         <suite-xml>test-suites/testng.xml</suite-xml>
         <argLine>-Dfile.encoding=UTF-8 -Xdebug -Xnoagent</argLine>
-        <boyka.version>0.20.1</boyka.version>
+        <boyka.version>0.22.0</boyka.version>
         <testng.version>7.8.0</testng.version>
         <lombok.version>1.18.30</lombok.version>
         <java.faker.version>1.0.2</java.faker.version>
